@@ -7,3 +7,6 @@ all:
 
 clean:
 	$(MAKE) -C $(OS) clean
+
+testit:
+	$(MAKE) -C $(OS) testit

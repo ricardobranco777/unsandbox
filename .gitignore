@@ -11,3 +11,5 @@
 **/*.d
 **/test
 **/lib*.so.0.0
+**/.depend
+**/a.out
