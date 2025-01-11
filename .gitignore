@@ -1,0 +1,11 @@
+**/*.o
+**/*.bco
+**/*.llo
+**/lib*.bc
+**/lib*.ll
+**/*.pico
+**/*.so.full
+**/*.so.debug
+**/lib*.a
+**/*.so
+**/*.d
