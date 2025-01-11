@@ -1,0 +1,13 @@
+CFLAGS  := -Wall -Wextra -fPIC
+
+test:	test.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+.PHONY: clean
+clean:
+	$(RM) $(PROG) *.o a.out
+
+.PHONY: testit
+testit:	test
+	./test || echo PASS
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test

@@ -1,4 +1,4 @@
-OS :sh = uname
+OS:sh = uname
 
 .PHONY: all clean
 
