@@ -1,0 +1,14 @@
+PROG= test
+
+SRCS= test.c
+CFLAGS+= -Wall -Wextra
+
+MK_DEBUG_FILES= no
+MAN=
+
+.include <bsd.prog.mk>
+
+.PHONY: testit
+testit:	$(PROG)
+	./$(PROG) || true
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG)
