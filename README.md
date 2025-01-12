@@ -18,3 +18,4 @@ See **ld.so**(8) manpage for alternatives to `LD_PRELOAD`
 ## BUGS / Limitations
   - Doesn't support statically compiled binaries
   - Doesn't support setuid/setgid binaries
+  - Doesn't work on HardenedBSD unless the `hardening.harden_rtld` sysctl is set to zero
