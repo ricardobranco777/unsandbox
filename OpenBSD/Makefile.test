@@ -10,5 +10,7 @@ MAN=
 
 .PHONY: testit
 testit:	$(PROG)
-	./$(PROG) || true
-	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG)
+	@./$(PROG) pledge || echo "PASS: Abort trap"
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG) pledge
+	@./$(PROG) unveil || echo "PASS: No such file or directory"
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG) unveil
