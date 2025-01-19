@@ -14,7 +14,7 @@ Supported sandboxes:
 
 ```
 make
-LD_PRELOAD=$PWD/$(uname -s)/libunsandbox.so
+LD_PRELOAD=$PWD/$(uname -s)/libunsandbox.so program [options] [arguments]
 ```
 
 See **ld.so**(8) manpage for alternatives to `LD_PRELOAD`
