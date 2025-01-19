@@ -20,14 +20,9 @@ syscall(long number, ...) {
 	switch (number) {
 		/* XXX Shall we add SYS_capget? */
 		case SYS_capset:
-#ifdef SYS_landlock_restrict_self
 		case SYS_landlock_restrict_self:
-#endif
+		case SYS_seccomp:
 			return (0);
-#if 0
-		case SYS_getuid:
-			return (777);
-#endif
 		default:
 			break;
 	}
