@@ -5,6 +5,9 @@ Supported sandboxes:
   - FreeBSD [capsicum](https://man.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4)
   - OpenBSD [pledge](https://man.openbsd.org/pledge)
   - Illumos [privileges](https://illumos.org/man/7/privileges)
+  - Linux
+    -  [seccomp](https://man7.org/linux/man-pages/man2/seccomp.2.html)
+    -  [capabilities](https://man7.org/linux/man-pages/man2/pr_capbset_drop.2const.html)
 
 ## Usage
 
