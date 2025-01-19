@@ -5,6 +5,8 @@
 #include <err.h>
 #include <pwd.h>
 
+#define USAGE	"Usage: %s pledge|unveil"
+
 static void
 test_pledge(void)
 {
@@ -31,12 +33,12 @@ test_unveil(void)
 
 int
 main(int argc, char *argv[]) {
-	if (!**argv || argc > 2)
-		errx(1, "Usage: %s pledge|unveil", getprogname());
+	if (!**argv || argc != 2)
+		errx(1, USAGE, getprogname());
 	if (!strcmp(argv[1], "pledge"))
 		test_pledge();
 	else if (!strcmp(argv[1], "unveil"))
 		test_unveil();
 	else
-		errx(1, "Usage: %s pledge|unveil", getprogname());
+		errx(1, USAGE, getprogname());
 }
