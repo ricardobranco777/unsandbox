@@ -27,12 +27,10 @@ prctl(int op, ...)
 	switch (op) {
 		/* XXX Shall we add PR_CAPBSET_READ? */
 		case PR_CAPBSET_DROP:
-		/*
-		 * XXX Shall we add the GET versions of these?
-		 */
-		case PR_SET_NO_NEW_PRIVS:
 		case PR_SET_SECCOMP:
 			return (0);
+		case PR_GET_NO_NEW_PRIVS:
+			return (1);
 		default:
 			break;
 	}

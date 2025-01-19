@@ -9,5 +9,9 @@ clean:
 
 .PHONY: testit
 testit:	test
-	./test || echo PASS
-	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test
+	./test no_new_privs || echo PASS
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test no_new_privs
+	./test seccomp1 || echo PASS
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test seccomp1
+	./test seccomp2 || echo PASS
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test seccomp2
