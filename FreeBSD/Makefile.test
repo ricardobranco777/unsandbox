@@ -9,5 +9,7 @@ WARNS=	3
 
 .PHONY: testit
 testit:	$(PROG)
-	./$(PROG) || true
-	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG)
+	./$(PROG) cap_enter || true
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG) cap_enter
+	./$(PROG) cap_rights_limit || true
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./$(PROG) cap_rights_limit
