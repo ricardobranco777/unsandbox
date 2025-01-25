@@ -1,23 +1,29 @@
+#include <errno.h>
+
 int
 cap_enter(void)
 {
-	return (0);
+	errno = ENOSYS;
+	return (-1);
 }
 
 int
 cap_rights_limit(void)
 {
-	return (0);
+	errno = ENOSYS;
+	return (-1);
 }
 
 int
 cap_fcntls_limit(void)
 {
-	return (0);
+	errno = ENOSYS;
+	return (-1);
 }
 
 int
 cap_ioctls_limit(void)
 {
-	return (0);
+	errno = ENOSYS;
+	return (-1);
 }

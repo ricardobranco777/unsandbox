@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/capsicum.h>
+#include <errno.h>
 #include <err.h>
 
 #define USAGE	"Usage: %s cap_enter|cap_rights_limit"
@@ -12,9 +13,8 @@ test_cap_enter(void)
 {
 	u_int mode;
 
-	if (cap_enter() < 0)
+	if (cap_enter() < 0 && errno != ENOSYS)
 		err(1, "cap_enter");
-	/* XXX Shall we hijack this one too? */
 	if (cap_getmode(&mode) < 0)
 		err(1, "cap_getmode");
 	if (mode)
@@ -37,11 +37,13 @@ test_cap_rights_limit(void)
 	// No CAP_READ
 	(void)cap_rights_init(&rights, CAP_FSTAT);
 
-	if (cap_rights_limit(fd, &rights) == -1)
+	if (cap_rights_limit(fd, &rights) == -1 && errno != ENOSYS)
 		err(1, "cap_rights_limit");
 
 	if (read(fd, buf, sizeof(buf)) == -1)
 		err(1, "read");
+	else
+		printf("PASS\n");
 
 	(void)close(fd);
 }
