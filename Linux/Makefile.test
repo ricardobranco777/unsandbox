@@ -25,3 +25,5 @@ testit:	test
 	@echo
 	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test landlock
 	@echo
+	@./test.sh
+	@echo

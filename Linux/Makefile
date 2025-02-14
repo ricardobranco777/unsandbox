@@ -4,7 +4,7 @@ LIB	:= libunsandbox.so
 
 CLEANFILES = *.so *.o a.out test
 
-$(LIB): unsandbox.c syscall.c
+$(LIB): unsandbox.c syscall.c lib.c
 	$(LINK.c) $^ -o $@
 
 .PHONY: clean
