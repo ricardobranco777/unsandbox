@@ -10,8 +10,17 @@ clean:
 .PHONY: testit
 testit:	test
 	./test no_new_privs || echo PASS
+	@echo
 	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test no_new_privs
+	@echo
 	./test seccomp1 || echo PASS
+	@echo
 	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test seccomp1
+	@echo
 	./test seccomp2 || echo PASS
+	@echo
 	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test seccomp2
+	@echo
+	./test landlock || echo PASS
+	@echo
+	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test landlock

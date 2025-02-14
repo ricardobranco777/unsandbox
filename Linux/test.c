@@ -7,8 +7,9 @@
 #include <sys/prctl.h>
 #include <sys/syscall.h>
 #include <linux/seccomp.h>
+#include <linux/landlock.h>
 
-#define USAGE	"Usage: %s seccomp1|seccomp2|privs"
+#define USAGE	"Usage: %s landlock|no_new_privs|seccomp1|seccomp2"
 
 static void
 test_no_new_privs(void)
@@ -38,6 +39,27 @@ test_seccomp2(void)
 		err(1, "syscall");
 }
 
+static void
+test_landlock(void)
+{
+	struct landlock_ruleset_attr ruleset_attr = {
+		.handled_access_fs = LANDLOCK_ACCESS_FS_READ_FILE | LANDLOCK_ACCESS_FS_READ_DIR,
+	};
+	int fd;
+
+	fd = syscall(SYS_landlock_create_ruleset, &ruleset_attr, sizeof(ruleset_attr), 0);
+#if 0
+	if (fd == -1)
+		err(1, "landlock_create_ruleset");
+#endif
+
+	// Restrict access to an empty set of paths
+	if (syscall(SYS_landlock_restrict_self, fd, 0) == -1)
+		err(1, "landlock_restrict_self");
+
+	(void)close(fd);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -49,6 +71,8 @@ main(int argc, char *argv[])
 		test_seccomp1();
 	else if (!strcmp(argv[1], "seccomp2"))
 		test_seccomp2();
+	else if (!strcmp(argv[1], "landlock"))
+		test_landlock();
 	else
 		errx(1, USAGE, argv[0]);
 
