@@ -3,6 +3,7 @@
 #include <dlfcn.h>
 #include <sys/syscall.h>
 #include <linux/capability.h>
+#include <errno.h>
 #include <err.h>
 
 typedef int (*syscall_t)(long, ...);
@@ -23,6 +24,9 @@ syscall(long number, ...) {
 		case SYS_landlock_restrict_self:
 		case SYS_seccomp:
 			return (0);
+		case SYS_landlock_create_ruleset:
+			errno = ENOSYS;
+			return (-1);
 		default:
 			break;
 	}
