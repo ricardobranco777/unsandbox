@@ -1,4 +1,5 @@
 #define _GNU_SOURCE
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -21,8 +22,9 @@ test_no_new_privs(void)
 
 	if ((rc = prctl(PR_GET_NO_NEW_PRIVS, 0, 0, 0, 0)) == -1)
 		err(1, "prctl PR_GET_NO_NEW_PRIVS");
-	else if (!rc)
-		errx(1, "FAIL: no_new_privs");
+
+	if (rc != 0)
+		errx(1, "PR_GET_NO_NEW_PRIVS: %d", rc);
 }
 
 static void
@@ -65,15 +67,17 @@ main(int argc, char *argv[])
 {
 	if (!**argv || argc != 2)
 		errx(1, USAGE, argv[0]);
-	if (!strcmp(argv[1], "no_new_privs"))
-		test_no_new_privs();
+	if (!strcmp(argv[1], "landlock"))
+		test_landlock();
 	else if (!strcmp(argv[1], "seccomp1"))
 		test_seccomp1();
 	else if (!strcmp(argv[1], "seccomp2"))
 		test_seccomp2();
-	else if (!strcmp(argv[1], "landlock"))
-		test_landlock();
-	else
+	else if (!strcmp(argv[1], "no_new_privs")) {
+		test_no_new_privs();
+		printf("PASS: no_new_privs\n");
+		return (0);
+	} else
 		errx(1, USAGE, argv[0]);
 
 	// This call needs access to /etc/passwd

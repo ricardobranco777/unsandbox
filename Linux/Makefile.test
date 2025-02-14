@@ -24,3 +24,4 @@ testit:	test
 	./test landlock || echo PASS
 	@echo
 	LD_PRELOAD=$$(pwd)/libunsandbox.so ./test landlock
+	@echo

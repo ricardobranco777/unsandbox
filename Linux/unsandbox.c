@@ -28,9 +28,12 @@ prctl(int op, ...)
 		/* XXX Shall we add PR_CAPBSET_READ? */
 		case PR_CAPBSET_DROP:
 		case PR_SET_SECCOMP:
+		case PR_SET_NO_NEW_PRIVS:
 			return (0);
+#if 0
 		case PR_GET_NO_NEW_PRIVS:
 			return (1);
+#endif
 		default:
 			break;
 	}
