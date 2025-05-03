@@ -14,7 +14,7 @@ ALL: lib$(LIB).so
 .include <bsd.lib.mk>
 
 lib$(LIB).so: lib$(LIB).so.$(SHLIB_MAJOR).$(SHLIB_MINOR)
-	ln lib$(LIB).so.$(SHLIB_MAJOR).$(SHLIB_MINOR) $@
+	ln -f lib$(LIB).so.$(SHLIB_MAJOR).$(SHLIB_MINOR) $@
 
 test:	lib$(LIB).so
 	$(MAKE) -f Makefile.test
