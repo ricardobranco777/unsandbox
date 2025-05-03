@@ -1,6 +1,8 @@
 
 Disable sandbox via shared-library hijacking
 
+This does the opposite of [libsandbox](https://github.com/ricardobranco777/libsandbox)
+
 Supported sandboxes:
   - FreeBSD [capsicum](https://man.freebsd.org/cgi/man.cgi?query=capsicum&sektion=4)
   - OpenBSD [pledge](https://man.openbsd.org/pledge)
