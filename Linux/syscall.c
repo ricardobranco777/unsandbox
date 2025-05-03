@@ -19,8 +19,6 @@ syscall(long number, ...) {
 	}
 
 	switch (number) {
-		/* XXX Shall we add SYS_capget? */
-		case SYS_capset:
 		case SYS_landlock_restrict_self:
 		case SYS_seccomp:
 			return (0);

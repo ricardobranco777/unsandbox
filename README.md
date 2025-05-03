@@ -8,7 +8,6 @@ Supported sandboxes:
   - OpenBSD [pledge](https://man.openbsd.org/pledge)
   - Illumos [privileges](https://illumos.org/man/7/privileges)
   - Linux
-    - [capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)
     - [landlock](https://man7.org/linux/man-pages/man7/landlock.7.html)
     - [prctl](https://man7.org/linux/man-pages/man2/PR_SET_NO_NEW_PRIVS.2const.html)
     - [seccomp](https://man7.org/linux/man-pages/man2/seccomp.2.html)
